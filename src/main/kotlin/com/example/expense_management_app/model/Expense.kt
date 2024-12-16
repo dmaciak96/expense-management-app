@@ -11,19 +11,18 @@ import java.util.*
 
 @Entity
 data class Expense(
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: UUID,
+    protected val id: UUID,
 
     @CreatedDate
-    val createdDate: Instant,
+    protected val createdDate: Instant,
 
     @LastModifiedDate
-    var lastModifiedDate: Instant?,
+    protected var lastModifiedDate: Instant?,
 
     @Version
-    var version: Int,
+    protected var version: Int,
 
     @NotBlank
     var name: String,

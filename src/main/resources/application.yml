@@ -2,7 +2,7 @@ spring:
   application:
     name: expense-management-app
   datasource:
-    url: jdbc:postgresql://localhost:5432/expense-app
+    url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
     password: postgres
   docker:
@@ -11,3 +11,6 @@ spring:
 logging:
   file:
     name: ./data/logs/${spring.application.name}.log
+server:
+  servlet:
+    context-path: /api

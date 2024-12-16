@@ -5,24 +5,26 @@ import jakarta.validation.constraints.Min
 import jakarta.validation.constraints.NotBlank
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.LastModifiedDate
+import org.springframework.data.jpa.domain.support.AuditingEntityListener
 import java.time.Instant
 import java.util.*
 
 
 @Entity
+@EntityListeners(AuditingEntityListener::class)
 data class Expense(
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected val id: UUID,
+    @GeneratedValue(strategy = GenerationType.UUID)
+    val id: UUID?,
 
     @CreatedDate
-    protected val createdDate: Instant,
+    val createdDate: Instant?,
 
     @LastModifiedDate
-    protected var lastModifiedDate: Instant?,
+    var lastModifiedDate: Instant?,
 
     @Version
-    protected var version: Int,
+    var version: Int?,
 
     @NotBlank
     var name: String,

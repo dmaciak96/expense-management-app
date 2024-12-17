@@ -10,7 +10,7 @@ spring:
       enabled: false
 logging:
   file:
-    name: ./data/logs/${spring.application.name}.log
+    path: ./data/logs
 server:
   servlet:
     context-path: /api

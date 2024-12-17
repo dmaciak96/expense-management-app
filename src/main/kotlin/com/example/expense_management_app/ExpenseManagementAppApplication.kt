@@ -9,5 +9,5 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing
 class ExpenseManagementAppApplication
 
 fun main(args: Array<String>) {
-	runApplication<ExpenseManagementAppApplication>(*args)
+    runApplication<ExpenseManagementAppApplication>(*args)
 }

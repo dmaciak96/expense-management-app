@@ -41,12 +41,14 @@ class BillingEntryRepositoryTest {
 
         assertNotNull(result.id)
         assertNotNull(result.createdTimestamp)
+        assertNotNull(result.lastUpdatedTimestamp)
         assertNotNull(result.version)
         assertEquals(0, result.version)
 
         assertNotNull(result.billingEntryGroup.id)
         assertNotNull(result.billingEntryGroup.createdTimestamp)
         assertNotNull(result.billingEntryGroup.version)
+        assertNotNull(result.billingEntryGroup.lastUpdatedTimestamp)
         assertEquals(0, result.billingEntryGroup.version)
     }
 
@@ -59,13 +61,14 @@ class BillingEntryRepositoryTest {
             )
         )
 
-        assertNull(savedEntity.lastUpdatedTimestamp)
         assertNotNull(savedEntity.version)
         assertEquals(0, savedEntity.version)
 
-        val result = billingEntryRepository.save(savedEntity)
+        savedEntity.name = "updated"
+        val result = billingEntryRepository.saveAndFlush(savedEntity)
         assertNotNull(result.lastUpdatedTimestamp)
         assertEquals(1, result.version)
+        assertEquals("updated", result.name)
     }
 
     @Test

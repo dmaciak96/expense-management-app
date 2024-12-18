@@ -13,7 +13,6 @@ import org.springframework.test.context.ContextConfiguration
 import java.math.BigDecimal
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
-import kotlin.test.assertNull
 
 @DataJpaTest
 @ExtendWith(TestContainersInitializer::class)

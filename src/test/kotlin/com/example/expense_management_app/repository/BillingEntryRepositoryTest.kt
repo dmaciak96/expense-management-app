@@ -1,9 +1,9 @@
 package com.example.expense_management_app.repository
 
 import com.example.expense_management_app.configuration.TestContainersInitializer
+import com.example.expense_management_app.model.BillingEntryType
 import com.example.expense_management_app.model.entity.BillingEntry
 import com.example.expense_management_app.model.entity.BillingEntryGroup
-import com.example.expense_management_app.model.BillingEntryType
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
@@ -13,6 +13,7 @@ import org.springframework.test.context.ContextConfiguration
 import java.math.BigDecimal
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
+import kotlin.test.assertTrue
 
 @DataJpaTest
 @ExtendWith(TestContainersInitializer::class)
@@ -28,6 +29,9 @@ class BillingEntryRepositoryTest {
 
     @Autowired
     private lateinit var billingEntryRepository: BillingEntryRepository
+
+    @Autowired
+    private lateinit var billingEntryGroupRepository: BillingEntryGroupRepository
 
     @Test
     fun whenAuditablePropertiesAreNullThenJpaShouldInitializeItDuringSave() {
@@ -84,6 +88,28 @@ class BillingEntryRepositoryTest {
         assertNotNull(result.billingEntryGroup)
         assertEquals(BILLING_ENTRY_GROUP_NAME, result.billingEntryGroup?.name)
         assertEquals(BillingEntryType.PROFIT, result.billingEntryGroup?.type)
+    }
+
+    @Test
+    fun shouldNotDeleteGroupIfHasRelationToBillingEntry() {
+        val billingEntryToSave = BillingEntry(
+            null, null, null, null,
+            BILLING_ENTRY_NAME, BILLING_ENTRY_AMOUNT, createBillingEntryGroup()
+        )
+        billingEntryGroupRepository.save(createBillingEntryGroup())
+        billingEntryRepository.save(billingEntryToSave)
+
+        assertEquals(2, billingEntryGroupRepository.findAll().size)
+
+        billingEntryGroupRepository.deleteAll()
+
+        assertEquals(1, billingEntryGroupRepository.findAll().size)
+        assertEquals(1, billingEntryRepository.findAll().size)
+
+        billingEntryRepository.deleteAll()
+        billingEntryGroupRepository.deleteAll()
+        assertTrue(billingEntryRepository.findAll().isEmpty())
+        assertTrue(billingEntryGroupRepository.findAll().isEmpty())
     }
 
     private fun createBillingEntryGroup(): BillingEntryGroup {

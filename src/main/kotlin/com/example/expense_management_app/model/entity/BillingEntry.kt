@@ -37,5 +37,5 @@ data class BillingEntry(
     var amount: BigDecimal,
 
     @ManyToOne(cascade = [CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE])
-    var billingEntryGroup: BillingEntryGroup?
+    var billingEntryGroup: BillingEntryGroup
 )

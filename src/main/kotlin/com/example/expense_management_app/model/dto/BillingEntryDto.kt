@@ -11,5 +11,5 @@ data class BillingEntryDto(
     var version: Int?,
     var name: String,
     var amount: BigDecimal,
-    var billingEntryGroup: BillingEntryGroupDto?
+    var billingEntryGroup: BillingEntryGroupDto
 )

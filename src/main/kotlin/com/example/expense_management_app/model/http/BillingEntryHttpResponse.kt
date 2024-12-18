@@ -11,5 +11,5 @@ data class BillingEntryHttpResponse(
     var version: Int?,
     var name: String,
     var amount: BigDecimal,
-    var billingEntryGroup: BillingEntryGroupHttpResponse
+    var billingEntryGroup: BillingEntryGroupHttpResponse?
 )

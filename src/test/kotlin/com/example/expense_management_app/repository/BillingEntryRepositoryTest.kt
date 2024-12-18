@@ -1,8 +1,8 @@
 package com.example.expense_management_app.repository
 
 import com.example.expense_management_app.configuration.TestContainersInitializer
-import com.example.expense_management_app.model.BillingEntry
-import com.example.expense_management_app.model.BillingEntryGroup
+import com.example.expense_management_app.model.entity.BillingEntry
+import com.example.expense_management_app.model.entity.BillingEntryGroup
 import com.example.expense_management_app.model.BillingEntryType
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
@@ -44,11 +44,11 @@ class BillingEntryRepositoryTest {
         assertNotNull(result.version)
         assertEquals(0, result.version)
 
-        assertNotNull(result.billingEntryGroup.id)
-        assertNotNull(result.billingEntryGroup.createdTimestamp)
-        assertNotNull(result.billingEntryGroup.version)
-        assertNotNull(result.billingEntryGroup.lastUpdatedTimestamp)
-        assertEquals(0, result.billingEntryGroup.version)
+        assertNotNull(result.billingEntryGroup?.id)
+        assertNotNull(result.billingEntryGroup?.createdTimestamp)
+        assertNotNull(result.billingEntryGroup?.version)
+        assertNotNull(result.billingEntryGroup?.lastUpdatedTimestamp)
+        assertEquals(0, result.billingEntryGroup?.version)
     }
 
     @Test
@@ -82,8 +82,8 @@ class BillingEntryRepositoryTest {
         assertEquals(BILLING_ENTRY_NAME, result.name)
         assertEquals(BILLING_ENTRY_AMOUNT, result.amount)
         assertNotNull(result.billingEntryGroup)
-        assertEquals(BILLING_ENTRY_GROUP_NAME, result.billingEntryGroup.name)
-        assertEquals(BillingEntryType.PROFIT, result.billingEntryGroup.type)
+        assertEquals(BILLING_ENTRY_GROUP_NAME, result.billingEntryGroup?.name)
+        assertEquals(BillingEntryType.PROFIT, result.billingEntryGroup?.type)
     }
 
     private fun createBillingEntryGroup(): BillingEntryGroup {

@@ -1,11 +1,13 @@
 package com.example.expense_management_app.controller
 
+import com.example.expense_management_app.mapper.BillingEntryMapper
 import com.example.expense_management_app.model.http.BillingEntryHttpRequest
 import com.example.expense_management_app.model.http.BillingEntryHttpResponse
 import com.example.expense_management_app.service.BillingEntryService
 import jakarta.validation.Valid
 import org.springframework.data.domain.Page
-import org.springframework.http.ResponseEntity
+import org.springframework.data.domain.PageRequest
+import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
+import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 import java.util.*
 
@@ -26,29 +29,33 @@ class BillingEntryController(private val billingEntryService: BillingEntryServic
         @RequestParam("page-number") pageNumber: Int,
         @RequestParam("page-size") pageSize: Int
     ): Page<BillingEntryHttpResponse> {
-        throw NotImplementedError()
+        return billingEntryService.findAll(PageRequest.of(pageNumber, pageSize)).map {
+            BillingEntryMapper.toResponse(it)
+        }
     }
 
     @GetMapping("/{id}")
-    fun findById(@PathVariable id: UUID): ResponseEntity<BillingEntryHttpResponse> {
-        throw NotImplementedError()
+    fun findById(@PathVariable id: UUID): BillingEntryHttpResponse {
+        return BillingEntryMapper.toResponse(billingEntryService.findById(id))
     }
 
     @PostMapping
-    fun save(@Valid @RequestBody request: BillingEntryHttpRequest): ResponseEntity<BillingEntryHttpResponse> {
-        throw NotImplementedError()
+    @ResponseStatus(HttpStatus.CREATED)
+    fun save(@Valid @RequestBody request: BillingEntryHttpRequest): BillingEntryHttpResponse {
+        return BillingEntryMapper.toResponse(billingEntryService.save(request))
     }
 
     @PutMapping("/{id}")
     fun update(
         @PathVariable id: UUID,
         @Valid @RequestBody request: BillingEntryHttpRequest
-    ): ResponseEntity<BillingEntryHttpResponse> {
-        throw NotImplementedError()
+    ): BillingEntryHttpResponse {
+        return BillingEntryMapper.toResponse(billingEntryService.update(id, request))
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     fun delete(@PathVariable id: UUID) {
-        throw NotImplementedError()
+        billingEntryService.deleteById(id)
     }
 }

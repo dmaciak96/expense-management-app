@@ -12,7 +12,7 @@ import java.util.*
 
 @Service
 class BillingEntryGroupServiceImpl(
-    val billingEntryGroupRepository: BillingEntryGroupRepository
+    private val billingEntryGroupRepository: BillingEntryGroupRepository
 ) : BillingEntryGroupService {
 
     override fun save(request: BillingEntryGroupHttpRequest): BillingEntryGroupDto {

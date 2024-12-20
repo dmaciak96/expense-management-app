@@ -28,6 +28,7 @@ class BillingEntryGroupServiceTest {
         private val CREATED_TIMESTAMP = Instant.now()
         private val UPDATED_TIMESTAMP = Instant.now()
         private val VERSION = 1
+        private val USER_ID = UUID.randomUUID()
     }
 
     @BeforeEach
@@ -80,6 +81,6 @@ class BillingEntryGroupServiceTest {
     }
 
     private fun createBillingEntryGroup(): BillingEntryGroup {
-        return BillingEntryGroup(ID, CREATED_TIMESTAMP, UPDATED_TIMESTAMP, VERSION, NAME, TYPE)
+        return BillingEntryGroup(ID, CREATED_TIMESTAMP, UPDATED_TIMESTAMP, VERSION, USER_ID, NAME, TYPE)
     }
 }

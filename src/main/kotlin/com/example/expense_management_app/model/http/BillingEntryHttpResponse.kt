@@ -9,6 +9,7 @@ data class BillingEntryHttpResponse(
     var createdTimestamp: Instant?,
     var lastUpdatedTimestamp: Instant?,
     var version: Int?,
+    var userId: UUID?,
     var name: String,
     var amount: BigDecimal,
     var billingEntryGroup: BillingEntryGroupHttpResponse?

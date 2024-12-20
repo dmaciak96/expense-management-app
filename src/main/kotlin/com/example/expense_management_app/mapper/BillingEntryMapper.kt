@@ -12,6 +12,7 @@ class BillingEntryMapper {
             dto.createdTimestamp,
             dto.lastUpdatedTimestamp,
             dto.version,
+            dto.userId,
             dto.name,
             dto.amount,
             dto.billingEntryGroup?.let { BillingEntryGroupMapper.toEntity(it) }
@@ -22,6 +23,7 @@ class BillingEntryMapper {
             dto.createdTimestamp,
             dto.lastUpdatedTimestamp,
             dto.version,
+            dto.userId,
             dto.name,
             dto.amount,
             dto.billingEntryGroup?.let { BillingEntryGroupMapper.toResponse(it) }
@@ -32,12 +34,14 @@ class BillingEntryMapper {
             entity.createdTimestamp,
             entity.lastUpdatedTimestamp,
             entity.version,
+            entity.userId,
             entity.name,
             entity.amount,
             entity.billingEntryGroup?.let { BillingEntryGroupMapper.toDto(it) }
         )
 
         fun toDto(request: BillingEntryHttpRequest): BillingEntryDto = BillingEntryDto(
+            null,
             null,
             null,
             null,

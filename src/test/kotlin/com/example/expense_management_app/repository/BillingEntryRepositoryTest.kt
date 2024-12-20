@@ -37,7 +37,7 @@ class BillingEntryRepositoryTest {
     fun whenAuditablePropertiesAreNullThenJpaShouldInitializeItDuringSave() {
         val result = billingEntryRepository.save(
             BillingEntry(
-                null, null, null, null,
+                null, null, null, null, null,
                 BILLING_ENTRY_NAME, BILLING_ENTRY_AMOUNT, createBillingEntryGroup()
             )
         )
@@ -59,7 +59,7 @@ class BillingEntryRepositoryTest {
     fun whenUpdateEntityThenLastUpdateDateShouldBeInitializedAndVersionIncreased() {
         val savedEntity = billingEntryRepository.save(
             BillingEntry(
-                null, null, null, null,
+                null, null, null, null, null,
                 BILLING_ENTRY_NAME, BILLING_ENTRY_AMOUNT, createBillingEntryGroup()
             )
         )
@@ -77,7 +77,7 @@ class BillingEntryRepositoryTest {
     @Test
     fun shouldSaveBillingEntryWithGroup() {
         val billingEntryToSave = BillingEntry(
-            null, null, null, null,
+            null, null, null, null, null,
             BILLING_ENTRY_NAME, BILLING_ENTRY_AMOUNT, createBillingEntryGroup()
         )
 
@@ -93,7 +93,7 @@ class BillingEntryRepositoryTest {
     @Test
     fun shouldNotDeleteGroupIfHasRelationToBillingEntry() {
         val billingEntryToSave = BillingEntry(
-            null, null, null, null,
+            null, null, null, null, null,
             BILLING_ENTRY_NAME, BILLING_ENTRY_AMOUNT, createBillingEntryGroup()
         )
         billingEntryGroupRepository.save(createBillingEntryGroup())
@@ -113,6 +113,6 @@ class BillingEntryRepositoryTest {
     }
 
     private fun createBillingEntryGroup(): BillingEntryGroup {
-        return BillingEntryGroup(null, null, null, null, BILLING_ENTRY_GROUP_NAME, BillingEntryType.PROFIT)
+        return BillingEntryGroup(null, null, null, null, null, BILLING_ENTRY_GROUP_NAME, BillingEntryType.PROFIT)
     }
 }

@@ -9,6 +9,7 @@ data class BillingEntryGroupDto(
     var createdTimestamp: Instant?,
     var lastUpdatedTimestamp: Instant?,
     var version: Int?,
+    var userId: UUID?,
     var name: String,
     var type: BillingEntryType
 )

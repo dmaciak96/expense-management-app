@@ -23,6 +23,7 @@ class BillingEntryMapperTest {
         private val BILLING_ENTRY_AMOUNT = BigDecimal("123123123123123123123123123123")
         private val BILLING_ENTRY_VERSION = 12
         private val BILLING_ENTRY_NAME = "BILLING_ENTRY"
+        private val USER_ID = UUID.randomUUID()
 
         private val BILLING_ENTRY_GROUP_ID = UUID.randomUUID()
         private val BILLING_ENTRY_GROUP_CREATED_TIMESTAMP = Instant.now()
@@ -54,6 +55,7 @@ class BillingEntryMapperTest {
             createdTimestamp = null,
             lastUpdatedTimestamp = null,
             version = null,
+            userId = null,
             billingEntryGroup = null
         )
         val result = BillingEntryMapper.toDto(request)
@@ -73,6 +75,7 @@ class BillingEntryMapperTest {
             BILLING_ENTRY_CREATED_TIMESTAMP,
             BILLING_ENTRY_LAST_UPDATE_TIMESTAMP,
             BILLING_ENTRY_VERSION,
+            USER_ID,
             BILLING_ENTRY_NAME,
             BILLING_ENTRY_AMOUNT,
             createBillingEntryGroupEntity()
@@ -85,6 +88,7 @@ class BillingEntryMapperTest {
             BILLING_ENTRY_GROUP_CREATED_TIMESTAMP,
             BILLING_ENTRY_GROUP_LAST_UPDATE_TIMESTAMP,
             BILLING_ENTRY_GROUP_VERSION,
+            USER_ID,
             BILLING_ENTRY_GROUP_NAME,
             BILLING_ENTRY_GROUP_TYPE
         )
@@ -96,6 +100,7 @@ class BillingEntryMapperTest {
             BILLING_ENTRY_CREATED_TIMESTAMP,
             BILLING_ENTRY_LAST_UPDATE_TIMESTAMP,
             BILLING_ENTRY_VERSION,
+            USER_ID,
             BILLING_ENTRY_NAME,
             BILLING_ENTRY_AMOUNT,
             createBillingEntryGroupDto()
@@ -108,6 +113,7 @@ class BillingEntryMapperTest {
             BILLING_ENTRY_GROUP_CREATED_TIMESTAMP,
             BILLING_ENTRY_GROUP_LAST_UPDATE_TIMESTAMP,
             BILLING_ENTRY_GROUP_VERSION,
+            USER_ID,
             BILLING_ENTRY_GROUP_NAME,
             BILLING_ENTRY_GROUP_TYPE
         )
@@ -127,6 +133,7 @@ class BillingEntryMapperTest {
             BILLING_ENTRY_CREATED_TIMESTAMP,
             BILLING_ENTRY_LAST_UPDATE_TIMESTAMP,
             BILLING_ENTRY_VERSION,
+            USER_ID,
             BILLING_ENTRY_NAME,
             BILLING_ENTRY_AMOUNT,
             createBillingEntryGroupHttpResponse()
@@ -139,6 +146,7 @@ class BillingEntryMapperTest {
             BILLING_ENTRY_GROUP_CREATED_TIMESTAMP,
             BILLING_ENTRY_GROUP_LAST_UPDATE_TIMESTAMP,
             BILLING_ENTRY_GROUP_VERSION,
+            USER_ID,
             BILLING_ENTRY_GROUP_NAME,
             BILLING_ENTRY_GROUP_TYPE
         )

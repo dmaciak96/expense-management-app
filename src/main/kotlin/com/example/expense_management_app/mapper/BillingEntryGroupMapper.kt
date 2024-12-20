@@ -12,16 +12,17 @@ class BillingEntryGroupMapper {
             dto.createdTimestamp,
             dto.lastUpdatedTimestamp,
             dto.version,
+            dto.userId,
             dto.name,
             dto.type
         )
-
 
         fun toResponse(dto: BillingEntryGroupDto): BillingEntryGroupHttpResponse = BillingEntryGroupHttpResponse(
             dto.id,
             dto.createdTimestamp,
             dto.lastUpdatedTimestamp,
             dto.version,
+            dto.userId,
             dto.name,
             dto.type
         )
@@ -31,11 +32,13 @@ class BillingEntryGroupMapper {
             entity.createdTimestamp,
             entity.lastUpdatedTimestamp,
             entity.version,
+            entity.userId,
             entity.name,
             entity.type
         )
 
         fun toDto(request: BillingEntryGroupHttpRequest): BillingEntryGroupDto = BillingEntryGroupDto(
+            null,
             null,
             null,
             null,
